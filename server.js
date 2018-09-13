@@ -5,6 +5,8 @@ var path = require('path');
 var socketIO = require('socket.io');
 var gameMap = require('./mapGenerator.js');
 var Gpio = require('onoff').Gpio;
+
+//Varaible declaration
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
@@ -62,27 +64,31 @@ function blastFireWork(counter){
 		
 		case 1:
 		numShipsShot = 1;
-		// Replace with pin1 high
+		ship1.writeSync(0);
 		break;
 		
 		case 2:
 		numShipsShot = 2;
-		//replace with pin2 high
+		ship1.writeSync(1);
+		ship2.writeSync(0);
 		break;
 		
 		case 3:
 		numShipsShot = 3;
-		//replace with pin3 high
+		ship2.writeSync(1);
+                ship3.writeSync(0);
 		break;
 		
 		case 4:
 		numShipsShot = 4;
-		//replace with pin4 high
+                ship3.writeSync(1);
+                ship4.writeSync(0);
 		break;
 		
 		case 5:
 		numShipsShot = 5;
-		//replace with pin5 high
+                ship4.writeSync(1);
+                ship5.writeSync(0);
 		break;
 	
 	}
