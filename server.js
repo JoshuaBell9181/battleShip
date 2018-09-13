@@ -4,12 +4,25 @@ var http = require('http');
 var path = require('path');
 var socketIO = require('socket.io');
 var gameMap = require('./mapGenerator.js');
+var Gpio = require('onoff').Gpio;
 var app = express();
 var server = http.Server(app);
 var io = socketIO(server);
-
+var ship1 = new Gpio(4, 'out'); //use GPIO pin 4, and specify that it is output
+var ship2 = new Gpio(17, 'out');
+var ship3 = new Gpio(27, 'out');
+var ship4 = new Gpio(22, 'out');
+var ship5 = new Gpio(5, 'out');
 var map = gameMap.generateJsonMap();
 var numShipsShot = 0;
+
+// Set all the ships to low output
+// In this example we put 1 for low and 0 for high
+ship1.writeSync(1);
+ship2.writeSync(1);
+ship3.writeSync(1);
+ship4.writeSync(1);
+ship5.writeSync(1);
 
 app.set('port', 5000);
 app.use('/static', express.static(__dirname + '/static'));
